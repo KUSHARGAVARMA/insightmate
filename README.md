@@ -1,53 +1,136 @@
-# 🧠 InsightMate – Smart Feedback Analyzer
+# ✨ InsightMate
 
-InsightMate is an intelligent feedback analysis tool designed to help teams extract value from user input. Built with modern AI and frontend technologies, it aims to work locally and privately, going beyond API-wrapping to real AI engineering.
+InsightMate is an AI-powered feedback analysis tool that uses OpenAI and Pinecone to turn raw customer feedback into structured insights.
 
----
-
-## ✅ Current Features
-
-### 1. ✍️ Feedback Submission UI
-Users can enter feedback through a clean interface built using **Next.js (App Router)** and **TypeScript**.
-
-### 2. 🧠 Feedback Analyzer (MVP v1)
-- Uses **OpenAI GPT-4** to:
-  - Summarize user feedback
-  - Extract action items
-  - Analyze sentiment and tone
-- Displays results in a structured format
-- Works via a backend route: `POST /api/analyze-feedback`
-
-### 3. 🔐 Secure OpenAI API Integration
-- API key stored in `.env.local`
-- Calls handled server-side to keep keys private
-
-### 4. ⚙️ Modern Stack
-- **Next.js (App Router)**
-- **TypeScript**
-- **Clean modular codebase** with `app/`, `api/`, and `components/` folders
+🎯 **Key Features**
+- Summarize and categorize customer feedback
+- Store embeddings for semantic search
+- Retrieve insights via RAG (retrieval-augmented generation)
+- Lightweight API that can be used by any frontend
 
 ---
 
-## 🚧 Next Steps (In Progress)
+## 🚀 Getting Started
 
-### Phase 2 – Semantic Embeddings & Vector Search
-- Generate embeddings (using OpenAI or MiniLM)
-- Store feedback vectors in a local DB (e.g., **ChromaDB**)
-- Add “Find Similar Feedback” feature using **cosine similarity**
-
-### Phase 3 – Smart Summarization (RAG)
-- Retrieve top-k similar feedbacks
-- Use them to summarize insights or show trends
-- Optimize API usage by reducing redundant GPT calls
-
----
-
-## 📦 Setup
-
+### 1️⃣ Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/YOUR_USERNAME/insightmate.git
 cd insightmate
+```
+
+---
+
+### 2️⃣ Install dependencies
+```bash
 npm install
-cp .env.local.example .env.local
-# Add your OpenAI API key in .env.local
+```
+
+---
+
+### 3️⃣ Configure environment variables
+
+Create a `.env.local` file in the project root:
+
+```
+OPENAI_API_KEY=your_openai_api_key
+PINECONE_API_KEY=your_pinecone_api_key
+PINECONE_ENVIRONMENT=your_pinecone_env
+PINECONE_INDEX=your_pinecone_index
+```
+
+*(Never commit this file)*
+
+---
+
+### 4️⃣ Run the development server
+```bash
 npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to see the app.
+
+---
+
+## 🌐 API Usage
+
+You can POST feedback and retrieve insights via REST endpoints.
+
+---
+
+### 📝 Analyze Feedback
+**POST** `/api/analyze-feedback`
+
+**Request Body:**
+```json
+{
+  "text": "I love the app but the login is slow."
+}
+```
+
+**Response:**
+```json
+{
+  "summary": "...",
+  "category": "...",
+  "improvement": "..."
+}
+```
+
+---
+
+### 🔍 Semantic Search
+**POST** `/api/semantic-search`
+
+**Request Body:**
+```json
+{
+  "query": "login issues"
+}
+```
+
+**Response:**
+Returns similar feedback entries with scores.
+
+---
+
+### 💡 RAG Insights
+**POST** `/api/rag-insights`
+
+**Request Body:**
+```json
+{
+  "question": "What are the top issues users reported?"
+}
+```
+
+**Response:**
+Generates a concise answer referencing stored feedback.
+
+---
+
+## 🛡️ CORS and Usage
+This API is intended to be deployed as a standalone service.
+- You can enable CORS so other frontends can call it.
+- To protect your OpenAI usage, consider adding API keys or authentication.
+
+---
+
+## 🌱 Future Improvements
+- CSV importer
+- User authentication (NextAuth)
+- API key auth and rate limiting
+- Usage dashboards
+- Role-based prompt customization
+
+---
+
+## 🧑‍💻 Contributing
+Pull requests are welcome! Please open issues for bugs or suggestions.
+
+---
+
+## 📄 License
+MIT
+
+---
+
+**Enjoy building with InsightMate!**
