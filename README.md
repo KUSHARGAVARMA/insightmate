@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 InsightMate – Smart Feedback Analyzer
 
-## Getting Started
+InsightMate is an intelligent feedback analysis tool designed to help teams extract value from user input. Built with modern AI and frontend technologies, it aims to work locally and privately, going beyond API-wrapping to real AI engineering.
 
-First, run the development server:
+---
+
+## ✅ Current Features
+
+### 1. ✍️ Feedback Submission UI
+Users can enter feedback through a clean interface built using **Next.js (App Router)** and **TypeScript**.
+
+### 2. 🧠 Feedback Analyzer (MVP v1)
+- Uses **OpenAI GPT-4** to:
+  - Summarize user feedback
+  - Extract action items
+  - Analyze sentiment and tone
+- Displays results in a structured format
+- Works via a backend route: `POST /api/analyze-feedback`
+
+### 3. 🔐 Secure OpenAI API Integration
+- API key stored in `.env.local`
+- Calls handled server-side to keep keys private
+
+### 4. ⚙️ Modern Stack
+- **Next.js (App Router)**
+- **TypeScript**
+- **Clean modular codebase** with `app/`, `api/`, and `components/` folders
+
+---
+
+## 🚧 Next Steps (In Progress)
+
+### Phase 2 – Semantic Embeddings & Vector Search
+- Generate embeddings (using OpenAI or MiniLM)
+- Store feedback vectors in a local DB (e.g., **ChromaDB**)
+- Add “Find Similar Feedback” feature using **cosine similarity**
+
+### Phase 3 – Smart Summarization (RAG)
+- Retrieve top-k similar feedbacks
+- Use them to summarize insights or show trends
+- Optimize API usage by reducing redundant GPT calls
+
+---
+
+## 📦 Setup
 
 ```bash
+git clone <your-repo-url>
+cd insightmate
+npm install
+cp .env.local.example .env.local
+# Add your OpenAI API key in .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
