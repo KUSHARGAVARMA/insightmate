@@ -72,12 +72,12 @@ try {
   // Try parsing directly first
   jsonResponse = JSON.parse(responseText);
 } catch (parseError1) {
-  // If it fails, sanitize and retry
+  console.warn('First parse attempt failed:', parseError1);
   try {
     const sanitized = sanitizeJSONResponse(responseText);
     jsonResponse = JSON.parse(sanitized);
   } catch (parseError2) {
-    // If it still fails, return error
+    console.error('Second parse attempt failed:', parseError2);
     return NextResponse.json(
       {
         error: "Failed to parse OpenAI response as JSON",
