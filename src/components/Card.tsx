@@ -8,7 +8,7 @@ type CardProps = {
   className?:string;
 };
 
-export default function Card({ title, description,className="",onClick }: CardProps) {
+export default function Card({ title, description,className="" }: CardProps) {
   return (
     <div className={`p-4 rounded-md shadow-md bg-white ${className}`}>
       <h2 className="text-2xl font-bold text-gray-800 mb-2">{title}</h2>
